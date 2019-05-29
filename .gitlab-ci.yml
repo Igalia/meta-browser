@@ -1,0 +1,130 @@
+stages:
+  - build-x11-thud
+  - build-wayland-thud
+  - build-x11-sumo
+  - build-wayland-sumo
+  - build-x11-rocko
+  - build-wayland-rocko
+
+before_script:
+  - mkdir -p ~/yocto-chromium
+  - cd ~/yocto-chromium
+  - ulimit -n 4096
+  - repo init -u https://gitlab.com/saavedra.pablo/meta-perf-browser.git -m $MANIFEST -b nightly
+  - repo sync --force-sync
+  - pushd sources/meta-browser
+  - git remote remove tmp || true
+  - git remote add tmp $CI_REPOSITORY_URL
+  - git fetch tmp
+  - git checkout $CI_COMMIT_SHA
+  - popd
+  - source setup-environment $SOURCE
+  - rm -rf tmp
+
+x11-qemuarm64-rocko:
+  stage: build-x11-rocko
+  allow_failure: true
+  tags:
+    - meta-browser
+  variables:
+    MANIFEST: manifest-rocko.xml
+    # setup-environment targetname machine distro bblayers presets --update-config
+    SOURCE: ci-chromium-x11-qemuarm64-mesa qemuarm64 browsers default mesa --update-config
+    BITBAKE_TARGET: chromium-x11
+  script:
+    - bitbake $BITBAKE_TARGET
+
+x11-raspberrypi3-sumo:
+  stage: build-x11-sumo
+  allow_failure: true
+  tags:
+    - meta-browser
+  variables:
+    MANIFEST: manifest-sumo.xml
+    # setup-environment targetname machine distro bblayers presets --update-config
+    SOURCE: ci-chromium-x11-raspberrypi3-mesa raspberrypi3-mesa browsers default mesa --update-config
+    BITBAKE_TARGET: chromium-x11
+  script:
+    - bitbake $BITBAKE_TARGET
+
+x11-intel-core-i7-64-thud:
+  stage: build-x11-thud
+  allow_failure: true
+  tags:
+    - meta-browser
+  variables:
+    MANIFEST: manifest-thud.xml
+    # setup-environment targetname machine distro bblayers presets --update-config
+    SOURCE: ci-chromium-x11-i7-mesa intel-corei7-64 browsers default mesa --update-config
+    BITBAKE_TARGET: chromium-x11
+  script:
+    - bitbake $BITBAKE_TARGET
+
+x11-intel-core2-32-thud:
+  stage: build-x11-thud
+  allow_failure: true
+  tags:
+    - meta-browser
+  variables:
+    MANIFEST: manifest-thud.xml
+    # setup-environment targetname machine distro bblayers presets --update-config
+    SOURCE: ci-chromium-x11-core2-mesa intel-core2-32 browsers default mesa --update-config
+    BITBAKE_TARGET: chromium-x11
+  script:
+    - bitbake $BITBAKE_TARGET
+
+#### Wayland
+
+wayland-raspberrypi3-sumo:
+  stage: build-wayland-sumo
+  allow_failure: true
+  tags:
+    - meta-browser
+  variables:
+    MANIFEST: manifest-sumo.xml
+    # setup-environment targetname machine distro bblayers presets --update-config
+    SOURCE: ci-chromium-wayland-raspberrypi3-mesa raspberrypi3-mesa browsers default mesa --update-config
+    BITBAKE_TARGET: chromium-ozone-wayland
+  script:
+    - bitbake $BITBAKE_TARGET
+
+wayland-beaglebone-sumo:
+  stage: build-wayland-sumo
+  allow_failure: true
+  tags:
+    - meta-browser
+  variables:
+    MANIFEST: manifest-sumo.xml
+    # setup-environment targetname machine distro bblayers presets --update-config
+    SOURCE: ci-chromium-wayland-beaglebone-mesa beaglebone-yocto browsers beaglebone mesa --update-config
+    BITBAKE_TARGET: chromium-ozone-wayland
+  script:
+    - bitbake $BITBAKE_TARGET
+
+wayland-m3ulcb-thud:
+  stage: build-wayland-thud
+  allow_failure: true
+  tags:
+    - meta-browser
+  variables:
+    MANIFEST: manifest-thud.xml
+    # setup-environment targetname machine distro bblayers presets --update-config
+    SOURCE: ci-chromium-wayland-m3ulcb-mesa m3ulcb browsers m3ulcb m3ulcb --update-config
+    BITBAKE_TARGET: chromium-ozone-wayland
+  script:
+    - pushd ../../sources/meta-renesas/
+    - sh meta-rcar-gen3/docs/sample/copyscript/copy_evaproprietary_softwares.sh -f ~/renesas/
+    - bitbake $BITBAKE_TARGET
+
+wayland-qemuarm64-clang-thud:
+  stage: build-wayland-thud
+  allow_failure: true
+  tags:
+    - meta-browser
+  variables:
+    MANIFEST: manifest-thud.xml
+    # setup-environment targetname machine distro bblayers presets --update-config
+    SOURCE: ci-chromium-wayland-qemuarm64-clang qemuarm64 browsers clang clang --update-config
+    BITBAKE_TARGET: chromium-ozone-wayland
+  script:
+    - bitbake $BITBAKE_TARGET
