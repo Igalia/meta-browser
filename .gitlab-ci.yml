@@ -29,10 +29,12 @@ x11-qemuarm64-rocko:
   variables:
     MANIFEST: manifest-rocko.xml
     # setup-environment targetname machine distro bblayers presets --update-config
-    SOURCE: ci-chromium-x11-qemuarm64-mesa qemuarm64 browsers default mesa --update-config
+    SOURCE: ci-chromium-x11-qemuarm64-mesa qemuarm64 browsers default mesa-rocko --update-config
     BITBAKE_TARGET: chromium-x11
   script:
     - bitbake $BITBAKE_TARGET
+  after_script:
+    - rm -rf ~/yocto-chromium/builds/ci-chromium-x11-qemuarm64-mesa/tmp/*
 
 x11-raspberrypi3-sumo:
   stage: build-x11-sumo
@@ -42,10 +44,12 @@ x11-raspberrypi3-sumo:
   variables:
     MANIFEST: manifest-sumo.xml
     # setup-environment targetname machine distro bblayers presets --update-config
-    SOURCE: ci-chromium-x11-raspberrypi3-mesa raspberrypi3-mesa browsers default mesa --update-config
+    SOURCE: ci-chromium-x11-raspberrypi3-mesa raspberrypi3-mesa browsers default mesa-sumo --update-config
     BITBAKE_TARGET: chromium-x11
   script:
     - bitbake $BITBAKE_TARGET
+  after_script:
+    - rm -rf ~/yocto-chromium/builds/ci-chromium-x11-raspberrypi3-mesa/tmp/*
 
 x11-intel-core-i7-64-thud:
   stage: build-x11-thud
@@ -55,10 +59,12 @@ x11-intel-core-i7-64-thud:
   variables:
     MANIFEST: manifest-thud.xml
     # setup-environment targetname machine distro bblayers presets --update-config
-    SOURCE: ci-chromium-x11-i7-mesa intel-corei7-64 browsers default mesa --update-config
+    SOURCE: ci-chromium-x11-i7-mesa intel-corei7-64 browsers default mesa-thud --update-config
     BITBAKE_TARGET: chromium-x11
   script:
     - bitbake $BITBAKE_TARGET
+  after_script:
+    - rm -rf ~/yocto-chromium/builds/ci-chromium-x11-i7-mesa/tmp/*
 
 x11-intel-core2-32-thud:
   stage: build-x11-thud
@@ -68,11 +74,12 @@ x11-intel-core2-32-thud:
   variables:
     MANIFEST: manifest-thud.xml
     # setup-environment targetname machine distro bblayers presets --update-config
-    SOURCE: ci-chromium-x11-core2-mesa intel-core2-32 browsers default mesa --update-config
+    SOURCE: ci-chromium-x11-core2-mesa intel-core2-32 browsers default mesa-thud --update-config
     BITBAKE_TARGET: chromium-x11
   script:
     - bitbake $BITBAKE_TARGET
-
+  after_script:
+    - rm -rf ~/yocto-chromium/builds/ci-chromium-x11-core2-mesa/tmp/*
 #### Wayland
 
 wayland-raspberrypi3-sumo:
@@ -83,10 +90,12 @@ wayland-raspberrypi3-sumo:
   variables:
     MANIFEST: manifest-sumo.xml
     # setup-environment targetname machine distro bblayers presets --update-config
-    SOURCE: ci-chromium-wayland-raspberrypi3-mesa raspberrypi3-mesa browsers default mesa --update-config
+    SOURCE: ci-chromium-wayland-raspberrypi3-mesa raspberrypi3-mesa browsers default mesa-sumo --update-config
     BITBAKE_TARGET: chromium-ozone-wayland
   script:
     - bitbake $BITBAKE_TARGET
+  after_script:
+    - rm -rf ~/yocto-chromium/builds/ci-chromium-wayland-raspberrypi3-mesa/tmp/*
 
 wayland-beaglebone-sumo:
   stage: build-wayland-sumo
@@ -96,10 +105,12 @@ wayland-beaglebone-sumo:
   variables:
     MANIFEST: manifest-sumo.xml
     # setup-environment targetname machine distro bblayers presets --update-config
-    SOURCE: ci-chromium-wayland-beaglebone-mesa beaglebone-yocto browsers beaglebone mesa --update-config
+    SOURCE: ci-chromium-wayland-beaglebone-mesa beaglebone-yocto browsers beaglebone mesa-sumo --update-config
     BITBAKE_TARGET: chromium-ozone-wayland
   script:
     - bitbake $BITBAKE_TARGET
+  after_script:
+    - rm -rf ~/yocto-chromium/builds/ci-chromium-wayland-beaglebone-mesa/tmp/*
 
 wayland-m3ulcb-thud:
   stage: build-wayland-thud
@@ -109,12 +120,14 @@ wayland-m3ulcb-thud:
   variables:
     MANIFEST: manifest-thud.xml
     # setup-environment targetname machine distro bblayers presets --update-config
-    SOURCE: ci-chromium-wayland-m3ulcb-mesa m3ulcb browsers m3ulcb m3ulcb --update-config
+    SOURCE: ci-chromium-wayland-m3ulcb-mesa m3ulcb browsers m3ulcb m3ulcb-thud --update-config
     BITBAKE_TARGET: chromium-ozone-wayland
   script:
     - pushd ../../sources/meta-renesas/
     - sh meta-rcar-gen3/docs/sample/copyscript/copy_evaproprietary_softwares.sh -f ~/renesas/
     - bitbake $BITBAKE_TARGET
+after_script:
+    - rm -rf ~/yocto-chromium/builds/ci-chromium-wayland-m3ulcb-mesa/tmp/*
 
 wayland-qemuarm64-clang-thud:
   stage: build-wayland-thud
@@ -128,3 +141,5 @@ wayland-qemuarm64-clang-thud:
     BITBAKE_TARGET: chromium-ozone-wayland
   script:
     - bitbake $BITBAKE_TARGET
+  after_script:
+    - rm -rf ~/yocto-chromium/builds/ci-chromium-wayland-qemuarm64-clang/tmp/*
