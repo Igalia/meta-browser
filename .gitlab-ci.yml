@@ -23,7 +23,6 @@ before_script:
 
 x11-qemuarm64-rocko:
   stage: build-x11-rocko
-  allow_failure: true
   tags:
     - meta-browser
   variables:
@@ -33,12 +32,12 @@ x11-qemuarm64-rocko:
     BITBAKE_TARGET: chromium-x11
   script:
     - bitbake $BITBAKE_TARGET
+  when: always
   after_script:
     - rm -rf ~/yocto-chromium/builds/ci-chromium-x11-qemuarm64-mesa/tmp/*
 
 x11-raspberrypi3-sumo:
   stage: build-x11-sumo
-  allow_failure: true
   tags:
     - meta-browser
   variables:
@@ -48,12 +47,12 @@ x11-raspberrypi3-sumo:
     BITBAKE_TARGET: chromium-x11
   script:
     - bitbake $BITBAKE_TARGET
+  when: always
   after_script:
     - rm -rf ~/yocto-chromium/builds/ci-chromium-x11-raspberrypi3-mesa/tmp/*
 
 x11-intel-core-i7-64-thud:
   stage: build-x11-thud
-  allow_failure: true
   tags:
     - meta-browser
   variables:
@@ -63,12 +62,12 @@ x11-intel-core-i7-64-thud:
     BITBAKE_TARGET: chromium-x11
   script:
     - bitbake $BITBAKE_TARGET
+  when: always
   after_script:
     - rm -rf ~/yocto-chromium/builds/ci-chromium-x11-i7-mesa/tmp/*
 
 x11-intel-core2-32-thud:
   stage: build-x11-thud
-  allow_failure: true
   tags:
     - meta-browser
   variables:
@@ -78,13 +77,13 @@ x11-intel-core2-32-thud:
     BITBAKE_TARGET: chromium-x11
   script:
     - bitbake $BITBAKE_TARGET
+  when: always
   after_script:
     - rm -rf ~/yocto-chromium/builds/ci-chromium-x11-core2-mesa/tmp/*
 #### Wayland
 
 wayland-raspberrypi3-sumo:
   stage: build-wayland-sumo
-  allow_failure: true
   tags:
     - meta-browser
   variables:
@@ -94,12 +93,12 @@ wayland-raspberrypi3-sumo:
     BITBAKE_TARGET: chromium-ozone-wayland
   script:
     - bitbake $BITBAKE_TARGET
+  when: always
   after_script:
     - rm -rf ~/yocto-chromium/builds/ci-chromium-wayland-raspberrypi3-mesa/tmp/*
 
 wayland-beaglebone-sumo:
   stage: build-wayland-sumo
-  allow_failure: true
   tags:
     - meta-browser
   variables:
@@ -109,12 +108,12 @@ wayland-beaglebone-sumo:
     BITBAKE_TARGET: chromium-ozone-wayland
   script:
     - bitbake $BITBAKE_TARGET
+  when: always
   after_script:
     - rm -rf ~/yocto-chromium/builds/ci-chromium-wayland-beaglebone-mesa/tmp/*
 
 wayland-m3ulcb-thud:
   stage: build-wayland-thud
-  allow_failure: true
   tags:
     - meta-browser
   variables:
@@ -126,12 +125,12 @@ wayland-m3ulcb-thud:
     - pushd ../../sources/meta-renesas/
     - sh meta-rcar-gen3/docs/sample/copyscript/copy_evaproprietary_softwares.sh -f ~/renesas/
     - bitbake $BITBAKE_TARGET
-after_script:
+  when: always
+  after_script:
     - rm -rf ~/yocto-chromium/builds/ci-chromium-wayland-m3ulcb-mesa/tmp/*
 
 wayland-qemuarm64-clang-thud:
   stage: build-wayland-thud
-  allow_failure: true
   tags:
     - meta-browser
   variables:
@@ -141,5 +140,6 @@ wayland-qemuarm64-clang-thud:
     BITBAKE_TARGET: chromium-ozone-wayland
   script:
     - bitbake $BITBAKE_TARGET
+  when: always
   after_script:
     - rm -rf ~/yocto-chromium/builds/ci-chromium-wayland-qemuarm64-clang/tmp/*
