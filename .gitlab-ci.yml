@@ -26,7 +26,7 @@ x11-raspberrypi3-clang-warrior:
   variables:
     MANIFEST: manifest-warrior.xml
     # setup-environment targetname machine distro bblayers presets --update-config
-    SOURCE: ci-chromium-x11-raspberrypi3-clang-warrior raspberrypi3-mesa browsers raspberrypi clang --update-config
+    SOURCE: ci-chromium-x11-raspberrypi3-clang-warrior raspberrypi3-mesa browsers clang clang --update-config
     BITBAKE_TARGET: chromium-x11
   script:
     - bitbake $BITBAKE_TARGET
@@ -89,7 +89,7 @@ wayland-raspberrypi3-clang-warrior:
   variables:
     MANIFEST: manifest-warrior.xml
     # setup-environment targetname machine distro bblayers presets --update-config
-    SOURCE: ci-chromium-wayland-raspberrypi3-clang-warrior raspberrypi3-mesa browsers raspberrypi clang --update-config
+    SOURCE: ci-chromium-wayland-raspberrypi3-clang-warrior raspberrypi3-mesa browsers clang clang --update-config
     BITBAKE_TARGET: chromium-ozone-wayland
   script:
     - bitbake $BITBAKE_TARGET
