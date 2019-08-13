@@ -74,7 +74,7 @@ wayland-m3ulcb-clang-thud:
   variables:
     MANIFEST: manifest-thud.xml
     # setup-environment targetname machine distro bblayers presets --update-config
-    SOURCE: ci-chromium-wayland-m3ulcb-clang-thud m3ulcb browsers m3ulcb clang-thud --update-config
+    SOURCE: ci-chromium-wayland-m3ulcb-clang-thud m3ulcb browsers m3ulcb m3ulcb-thud-clang --update-config
     BITBAKE_TARGET: chromium-ozone-wayland
   script:
     - bitbake $BITBAKE_TARGET
