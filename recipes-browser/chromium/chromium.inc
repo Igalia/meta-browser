@@ -2,8 +2,8 @@ DESCRIPTION = "Chromium is an open-source browser project that aims to build a s
 HOMEPAGE = "https://www.chromium.org/Home"
 
 SRC_URI = "https://commondatastorage.googleapis.com/chromium-browser-official/chromium-${PV}.tar.xz"
-SRC_URI[md5sum] = "389e62cd2f0d7a21159241e3a31df0c0"
-SRC_URI[sha256sum] = "d54e4640b5e399d170dffbc5bcff65157eb1b29314b94b5d808f727d9ce45241"
+SRC_URI[md5sum] = "904f2083ab31113da4e897d62201b3c7"
+SRC_URI[sha256sum] = "eb952ff241e719cbdcc2aae1832ecc1dd2263736ab38ee1dbf88ac9120119789"
 
 S = "${WORKDIR}/chromium-${PV}"
 
@@ -155,7 +155,7 @@ LIC_FILES_CHKSUM = "\
     file://${S}/third_party/emoji-segmenter/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
     file://${S}/third_party/expat/files/COPYING;md5=5b8620d98e49772d95fc1d291c26aa79 \
     file://${S}/third_party/feed/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
-    file://${S}/third_party/ffmpeg/CREDITS.chromium;md5=eeb4d970460805156a5bc3a414d48740 \
+    file://${S}/third_party/ffmpeg/CREDITS.chromium;md5=f74504a10e06dc175c0e8e7e15105c05 \
     file://${S}/third_party/flac/COPYING.Xiph;md5=a2c4b71c0198682376d483eb5bcc9197 \
     file://${S}/third_party/flatbuffers/LICENSE;md5=a873c5645c184d51e0f9b34e1d7cf559 \
     file://${S}/third_party/flot/LICENSE.txt;md5=fe1ea2158d814e4fc7227c8c6ccd7ab3 \
@@ -258,7 +258,7 @@ LIC_FILES_CHKSUM = "\
     file://${S}/third_party/web-animations-js/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
     file://${S}/third_party/webrtc/LICENSE;md5=ad296492125bc71530d06234d9bfebe0 \
     file://${S}/third_party/woff2/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
-    file://${S}/third_party/wtl/Ms-PL.txt;md5=c1ff18e69b2e953f65f28bcbc29be275 \
+    file://${S}/third_party/wtl/Ms-PL.txt;md5=1d2c3cdd7e748a6bc4213321d9157c5a \
     file://${S}/third_party/xdg-utils/LICENSE;md5=a5367a90934098d6b05af3b746405014 \
     file://${S}/third_party/yasm/source/patched-yasm/COPYING;md5=a12d8903508fb6bfd49d8d82c6170dd9 \
     file://${S}/third_party/zlib/LICENSE;md5=f09575dbfb09420642318b413159496f \
