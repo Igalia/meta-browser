@@ -1,5 +1,11 @@
 require chromium-gn.inc
 
+SRC_URI += " \
+        file://0001-ozone-wayland-Fix-method-prototype-match.patch \
+        file://V4L2/0001-Add-support-for-V4L2VDA-on-Linux.patch \
+        file://V4L2/0002-Add-mmap-via-libv4l-to-generic_v4l2_device.patch \
+"
+
 REQUIRED_DISTRO_FEATURES = "wayland"
 
 DEPENDS += "\
@@ -25,11 +31,6 @@ GN_ARGS += "\
         use_system_libwayland=true \
         use_system_minigbm=true \
         use_system_libdrm=true \
-"
-
-SRC_URI += " \	
-        file://V4L2/0001-Add-support-for-V4L2VDA-on-Linux.patch \	
-        file://V4L2/0002-Add-mmap-via-libv4l-to-generic_v4l2_device.patch \	
 "
 
 # The chromium binary must always be started with those arguments.

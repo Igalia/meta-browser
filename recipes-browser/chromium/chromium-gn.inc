@@ -14,7 +14,6 @@ SRC_URI += " \
         file://wrapper-extra-flags.patch \
         file://do-not-specify-march-on-arm.patch \
         file://add_internal_define_armv7ve.patch \
-        file://0001-Enforce-host-toolchain-for-cddl-and-protoc-tools.patch \
 "
 
 SRC_URI_append_libc-musl = "\
@@ -459,7 +458,7 @@ FILES_${PN}-chromedriver = "${bindir}/chromedriver"
 FILES_${PN} = " \
         ${bindir}/chromium \
         ${datadir}/applications/chromium.desktop \
-        ${datadir}/icons/hicolor/* \
+        ${datadir}/icons/hicolor/*x*/apps/chromium.png \
         ${libdir}/chromium/* \
 "
 
